@@ -1,0 +1,48 @@
+server:
+  port: 8080
+  forward-headers-strategy: native
+
+spring:
+  application.name: spring-test
+# If using H2 as DB
+#  h2:
+#    console:
+#      enabled: true
+#  datasource:
+#    url: jdbc:h2:mem:testdb
+#    driver-class-name: org.h2.Driver
+#    username: sa
+#    password:
+#  jpa:
+#    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+
+# Using MySQL(Workbench) as DB
+  datasource:
+    url: jdbc:mysql://localhost:3306/testdatabase123
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+#bezkoder:
+#  app:
+#    jwtCookieName: bezkoder
+#    jwtSecret: ======================BezKoder=Spring===========================
+#    jwtExpirationMs: 86400000
+
+swagger:
+  title: ${spring.application.name}
+  description: ${spring.application.name} API Documentation
+  version: 0.0.1
+  termsOfServiceUrl:
+  contact:
+  license:
+  licenseUrl:
+  includePattern: "/api/.*|/manage.*|/logout/.*"
+  excludeServices: "configserver, labcomputelogin, apigateway"
