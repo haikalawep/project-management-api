@@ -5,18 +5,15 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Set;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Entity
 @Table(name = "project")
 public class Project {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "project")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "project") // Auto-generated ID
     private long id;
 
     @NotNull(message = "Name cannot be null!")
@@ -27,9 +24,9 @@ public class Project {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false) // Many-to-One relationship with User
     @JoinColumn(name = "userId")
-    @JsonIgnore
+    @JsonIgnore // To hide User details to client/Not compulsory field when inserting detail
     private User user;
 
 }

@@ -1,10 +1,10 @@
 package com.HaikalArif.project_management_api.Dto;
 
-import com.HaikalArif.project_management_api.Model.Project;
-import com.HaikalArif.project_management_api.Model.Status;
-import com.HaikalArif.project_management_api.Model.User;
+import com.HaikalArif.project_management_api.Enum.Status;
 import lombok.*;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -14,6 +14,8 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @ToString
 public class TaskDto {
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "task")
+    private long id;
 
     @NotNull(message = "Title cannot be null!")
     @NotEmpty(message = "Title cannot be empty!")

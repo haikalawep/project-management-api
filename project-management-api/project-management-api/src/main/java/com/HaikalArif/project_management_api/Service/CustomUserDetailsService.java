@@ -21,6 +21,7 @@ public class CustomUserDetailsService implements UserDetailsService  {
         // Find user by email (username) because we use email as it is unique
         User user = userRepository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        System.out.println("Test: " + user);
 
         // Return a User object with password and authorities based on role
         return new org.springframework.security.core.userdetails.User(

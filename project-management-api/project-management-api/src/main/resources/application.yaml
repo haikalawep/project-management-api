@@ -1,21 +1,15 @@
 server:
   port: 8080
   forward-headers-strategy: native
+  error:
+    include-message: always
+    include-binding-errors: always
+#    To set context path
+#  servlet:
+#    context-path: /manage-service
 
 spring:
   application.name: spring-test
-# If using H2 as DB
-#  h2:
-#    console:
-#      enabled: true
-#  datasource:
-#    url: jdbc:h2:mem:testdb
-#    driver-class-name: org.h2.Driver
-#    username: sa
-#    password:
-#  jpa:
-#    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
-
 # Using MySQL(Workbench) as DB
   datasource:
     url: jdbc:mysql://localhost:3306/testdatabase123
@@ -30,11 +24,18 @@ spring:
       hibernate:
         format_sql: true
 
-#bezkoder:
-#  app:
-#    jwtCookieName: bezkoder
-#    jwtSecret: ======================BezKoder=Spring===========================
-#    jwtExpirationMs: 86400000
+# If using H2 as DB
+#  h2:
+#    console:
+#      enabled: true
+#  datasource:
+#    url: jdbc:h2:mem:testdb
+#    driver-class-name: org.h2.Driver
+#    username: sa
+#    password:
+#  jpa:
+#    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+
 
 swagger:
   title: ${spring.application.name}

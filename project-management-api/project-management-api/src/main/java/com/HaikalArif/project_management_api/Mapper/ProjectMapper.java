@@ -9,11 +9,12 @@ import java.util.stream.Collectors;
 
 public class ProjectMapper {
     // Convert the Model to DTO
-    public static ProjectDto toProjectDto (Project project) {
+    public static ProjectDto toProjectDto(Project project) {
         if (project == null) {
             return null;
         }
         ProjectDto projectDto = new ProjectDto();
+        projectDto.setId(project.getId());
         projectDto.setName(project.getName());
         projectDto.setDescription(project.getDescription());
 //        projectDto.setUser(project.getUser());
@@ -21,11 +22,12 @@ public class ProjectMapper {
         return projectDto;
     }
     // Convert the DTO to Model
-    public static Project toProjectModel (ProjectDto projectDto) {
+    public static Project toProjectModel(ProjectDto projectDto) {
         if (projectDto == null) {
             return null;
         }
         Project newProject = new Project();
+        newProject.setId(projectDto.getId());
         newProject.setName(projectDto.getName());
         newProject.setDescription(projectDto.getDescription());
 //        newProject.setUser(projectDto.getUser());
@@ -34,6 +36,22 @@ public class ProjectMapper {
         newProject.setUser(user);
 
         return newProject;
+    }
+
+    public static Project toProject(Project project) {
+        if (project == null) {
+            return null;
+        }
+        Project keepProject = new Project();
+        keepProject.setId(project.getId());
+        keepProject.setName(project.getName());
+        keepProject.setDescription(project.getDescription());
+//        newProject.setUser(projectDto.getUser());
+//        User user = new User();
+//        user.setId(project.getUser().getId());
+        keepProject.setUser(project.getUser());
+
+        return keepProject;
     }
 
     // Convert List of Project to Project Dto

@@ -1,6 +1,5 @@
 package com.HaikalArif.project_management_api.Mapper;
 
-import com.HaikalArif.project_management_api.Dto.ProjectDto;
 import com.HaikalArif.project_management_api.Dto.TaskDto;
 import com.HaikalArif.project_management_api.Model.Project;
 import com.HaikalArif.project_management_api.Model.Task;
@@ -9,7 +8,6 @@ import com.HaikalArif.project_management_api.Service.ProjectService;
 import com.HaikalArif.project_management_api.Service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +23,7 @@ public class TaskMapper {
             return null;
         }
         TaskDto taskDto = new TaskDto();
+        taskDto.setId(task.getId());
         taskDto.setTitle(task.getTitle());
         taskDto.setDescription(task.getDescription());
         taskDto.setStatus(task.getStatus());
@@ -35,24 +34,44 @@ public class TaskMapper {
         return taskDto;
     }
     // Convert the DTO to Model
-    public static Task toTaskModel (TaskDto taskDto) {
+    public static Task toTaskModel (TaskDto taskDto, long projectId) {
         if (taskDto == null) {
             return null;
         }
         Task newTask = new Task();
+        newTask.setId(taskDto.getId());
         newTask.setTitle(taskDto.getTitle());
         newTask.setDescription(taskDto.getDescription());
         newTask.setStatus(taskDto.getStatus());
 //        newTask.setProject(taskDto.getProject());
 //        newTask.setUser(taskDto.getUser());
-        Project project = new Project();
-        project.setId(taskDto.getProjectId());
+        Project project = new Project(); // Set new project
+        project.setId(projectId);
         newTask.setProject(project);
 
         User user = new User();
         user.setId(taskDto.getUserId());
         newTask.setUser(user);
         return newTask;
+    }
+
+    public static Task toTask(Task task) {
+        if (task == null) {
+            return null;
+        }
+        Task keepTask = new Task();
+        keepTask.setId(task.getId());
+        keepTask.setTitle(task.getTitle());
+        keepTask.setDescription(task.getDescription());
+        keepTask.setStatus(task.getStatus());
+//        newProject.setUser(projectDto.getUser());
+//        Project project = new Project();
+//        project.setId(projectId);
+        keepTask.setProject(task.getProject());
+//        User user = new User();
+//        user.setId(task.getUser().getId());
+        keepTask.setUser(task.getUser());
+        return keepTask;
     }
 
     // Convert List of Project to Project Dto

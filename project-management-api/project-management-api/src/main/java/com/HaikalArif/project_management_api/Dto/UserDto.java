@@ -1,10 +1,9 @@
 package com.HaikalArif.project_management_api.Dto;
 
-import com.HaikalArif.project_management_api.Model.Role;
+import com.HaikalArif.project_management_api.Enum.Role;
 import lombok.*;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

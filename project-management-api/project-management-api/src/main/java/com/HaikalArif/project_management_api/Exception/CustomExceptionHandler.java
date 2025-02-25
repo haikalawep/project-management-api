@@ -21,10 +21,20 @@ public class CustomExceptionHandler {
         });
         return map;
     }
+
+    // Handle Exception for Bad Request status - For wrong Role input
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(WrongRoleException.class)
+    public Map<String, String> handleWrongRoleExceptionException(WrongRoleException exception) {
+        Map<String, String> map =  new HashMap<>();
+        map.put("errorMessage", exception.getMessage());
+        return map;
+    }
+
     // Handle Exception  for Not Found status - For object id that not existed
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(UserNotFoundException.class)
-    public Map<String, String> handleUserNotFoundException(UserNotFoundException exception) {
+    @ExceptionHandler(NotFoundException.class)
+    public Map<String, String> handleNotFoundException(NotFoundException exception) {
         Map<String, String> map =  new HashMap<>();
         map.put("errorMessage", exception.getMessage());
         return map;
